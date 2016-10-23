@@ -57,6 +57,7 @@ class EmployeeCreate extends Component {
 
 const styles = {
   pickerLabel: {
+    color: '#383A3F',
     fontSize: 15,
     paddingLeft: 15,
     paddingTop: 5
