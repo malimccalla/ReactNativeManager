@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardSection, Input, Button } from './common';
+import { Text } from 'react-native';
+import { Card, CardSection, Input, Button, Spinner } from './common';
 import * as actions from '../actions';
 
 
@@ -16,6 +17,17 @@ class LoginForm extends Component {
   handleButtonPress() {
     const { email, password } = this.props;
     this.props.loginUser({ email, password });
+  }
+
+  renderButton() {
+    if (this.props.loading) {
+      return <Spinner size="large" />;
+    }
+    return (
+      <Button onPress={this.handleButtonPress.bind(this)}>
+        Login
+      </Button>
+    );
   }
 
   render() {
@@ -40,21 +52,29 @@ class LoginForm extends Component {
           />
         </CardSection>
 
+        <Text style={styles.error}>
+          {this.props.error}
+        </Text>
+
         <CardSection>
-          <Button onPress={this.handleButtonPress.bind(this)}>
-            Login
-          </Button>
+          {this.renderButton()}
         </CardSection>
       </Card>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    email: state.auth.email,
-    password: state.auth.password
-  };
+const styles = {
+  error: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
+  }
+};
+
+const mapStateToProps = ({ auth }) => {
+  const { email, password, error, loading } = auth;
+  return { email, password, error, loading };
 };
 
 export default connect(mapStateToProps, actions)(LoginForm);
