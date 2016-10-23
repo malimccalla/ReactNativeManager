@@ -5,6 +5,14 @@ import { Card, CardSection, Input, Button } from './common';
 import { employeeUpdate } from '../actions';
 
 class EmployeeCreate extends Component {
+  renderPickerItems() {
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+    return days.map(day =>
+      <Picker.Item key={day} label={day} value={day} />
+    );
+  }
+
   render() {
     return (
       <Card>
@@ -33,13 +41,7 @@ class EmployeeCreate extends Component {
             onValueChange={value => this.props.employeeUpdate({ prop: 'shift', value })}
             style={{ flex: 1 }}
           >
-            <Picker.Item label="Monday" value="Monday" />
-            <Picker.Item label="Tuesday" value="Tuesday" />
-            <Picker.Item label="Wednesday" value="Wednesday" />
-            <Picker.Item label="Thursday" value="Thursday" />
-            <Picker.Item label="Friday" value="Friday" />
-            <Picker.Item label="Saturday" value="Saturday" />
-            <Picker.Item label="Sunday" value="Sunday" />
+            {this.renderPickerItems()}
           </Picker>
         </CardSection>
 
@@ -54,9 +56,10 @@ class EmployeeCreate extends Component {
 }
 
 const styles = {
-  pickerStyle: {
-    fontSize: 18,
-    paddingLeft: 20,
+  pickerLabel: {
+    fontSize: 15,
+    paddingLeft: 15,
+    paddingTop: 5
   }
 };
 
