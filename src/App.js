@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import ReduxThunk from 'redux-thunk';
 import firebase from 'firebase';
 import reducers from './reducers';
-import LoginForm from './components/LoginForm';
 import Router from './router';
 
 class App extends Component {
