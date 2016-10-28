@@ -35,6 +35,7 @@ class EmployeeList extends Component {
   render() {
     return (
       <ListView
+        // stickyHeaderIndices={[0, 3]} // keeps item stuck to top
         enableEmptySections
         dataSource={this.dataSource}
         renderRow={this.renderRow}
