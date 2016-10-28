@@ -12,7 +12,7 @@ class EmployeeForm extends Component {
       <Picker.Item key={day} label={day} value={day} />
     );
   }
-  
+
   render() {
     return (
       <View>
@@ -58,4 +58,9 @@ const styles = {
   }
 };
 
-export default connect(null, { employeeUpdate })(EmployeeForm);
+const mapStateToProps = (state) => {
+  const { name, shift, phone } = state.employeeForm;
+  return { name, shift, phone };
+};
+
+export default connect(mapStateToProps, { employeeUpdate })(EmployeeForm);
