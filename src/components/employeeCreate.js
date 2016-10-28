@@ -8,8 +8,8 @@ class EmployeeCreate extends Component {
 
 
   onButtonPress() {
-    const { name, phone, shift, employeeCreate } = this.props;
-    employeeCreate({ name, phone, shift: shift || 'Monday' });
+    const { name, phone, shift } = this.props;
+    this.props.employeeCreate({ name, phone, shift: shift || 'Monday' });
   }
 
   renderPickerItems() {

@@ -36,7 +36,6 @@ export const loginUser = ({ email, password }) => {
 };
 
 const loginUserSuccess = (dispatch, user) => {
-  console.log(user);
   firebase.database().ref(`users/${user.uid}`)
     .update({ email: user.email })
     .then(() => {
